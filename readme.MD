@@ -735,3 +735,15 @@ The system includes a robust set of **RESTful APIs** to enable smooth interactio
     ]
   }
   ```
+## 🚀 **Key Features & How to Test**
+
+### **1️⃣ Create a Trainer**
+To create a trainer, send a POST request to /api/v1/user/create-trainer with trainer details and an admin's token in the Authorization header (<admin-token>). The system checks if the email exists, hashes the password, creates a user entry, and adds the trainer. On success, it returns a confirmation message with trainer data.
+
+### **2️⃣ Book a Class**
+To book a class, send a POST request to /api/v1/booking with the class ID and trainee's email. The system checks if the class exists and if it has available slots (maximum 10 trainees per class). It also ensures that the trainee is not already booked for another class at the same date and overlapping time. If all conditions are met, the system creates a new booking and updates the class's booking count. On success, it returns a confirmation message with the booking details. The request must include an trainee's authentication token in the Authorization header (<trainee-token>)
+
+### **3️⃣ Create a Class Schedule**
+To create a class schedule, send a POST request to /api/v1/schedule/create with the date and start time. The request must include an admin’s authentication token in the Authorization header (<admin-token>) since only admins can create class schedules.
+
+The system first checks if the date already has 5 scheduled classes, ensuring a limit per day. If the limit is reached, the request is rejected. If valid, the system automatically calculates the end time by adding 2 hours to the start time. Finally, the class schedule is created and saved in the database. Upon success, the system returns a confirmation message along with the class details.
