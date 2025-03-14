@@ -1,14 +1,15 @@
 ## **📌 Project Overview**
+
 This project is a **Gym Management System** that allows **admins, trainers, and trainees** to manage class schedules, book classes, and update profiles. It includes authentication, role-based access, class scheduling, trainer assignment, and trainee bookings.
 
 ## **🗂️ Relational Diagram**
+
 Below is the relational diagram representing the **database relationships** between users, trainers, trainees, admins, bookings, and class schedules.
 
 <img src="https://res.cloudinary.com/dbtpawxtd/image/upload/v1741931585/EduDiagram_zjp0yt.jpg">
 
-
-
 ## **💻 Technology Stack**
+
 The project is built using the following technologies:
 
 - **Backend:** Node.js, Express.js, Prisma ORM, PostgreSQL
@@ -19,6 +20,7 @@ The project is built using the following technologies:
 ---
 
 ## **🛠 Admin Credentials**
+
 To log in as an **Admin**, use the following credentials:
 
 - **Email:** `ashik@gmail.com`
@@ -29,18 +31,22 @@ To log in as an **Admin**, use the following credentials:
 ## **🚀 Setup Instructions**
 
 ### **1️⃣ Clone the Repository**
+
 ```bash
 git clone https://github.com/ashik190141/class-schedule-management
 cd class-schedule-management
 ```
 
 ### **2️⃣ Install Dependencies**
+
 ```bash
 yarn install
 ```
 
 ### **3️⃣ Set Up Environment Variables**
+
 Create a `.env` file in the root directory and add the following:
+
 ```
 DATABASE_URL=your_postgresql_database_url
 SECRET=your_secret_key
@@ -48,9 +54,11 @@ SECRET_EXPIRE=the time when secret key expires
 ```
 
 ### **5️⃣ Start the Development Server**
+
 ```bash
 yarn dev
 ```
+
 ## **🗃️ Database Schema (Prisma Model)**
 
 The following **Prisma schema** represents the database structure used in this project.
@@ -152,13 +160,16 @@ model Booking {
 ```
 
 ## **📌 API Documentation**
-The system includes a robust set of **RESTful APIs** to enable smooth interaction between frontend applications and backend services. 
+
+The system includes a robust set of **RESTful APIs** to enable smooth interaction between frontend applications and backend services.
 
 # **Gym Management System API Documentation**
 
 ### **1️⃣ Authentication**
+
 #### **Login**
-- **Route:** `http://localhost:3000/api/v1/auth/login`
+
+- **Route:** `https://gym-self-ten.vercel.app/api/v1/auth/login`
 - **Method:** `POST`
 - **Body:**
   ```json
@@ -180,8 +191,10 @@ The system includes a robust set of **RESTful APIs** to enable smooth interactio
 ---
 
 ### **2️⃣ User Management**
+
 #### **Create Admin**
-- **Route:** `http://localhost:3000/api/v1/user/create-admin`
+
+- **Route:** `https://gym-self-ten.vercel.app/api/v1/user/create-admin`
 - **Method:** `POST`
 - **Headers:** `Authorization Admin Token`
 - **Body:**
@@ -217,7 +230,8 @@ The system includes a robust set of **RESTful APIs** to enable smooth interactio
 ---
 
 #### **Create Trainee**
-- **Route:** `http://localhost:3000/api/v1/user/create-trainee`
+
+- **Route:** `https://gym-self-ten.vercel.app/api/v1/user/create-trainee`
 - **Method:** `POST`
 - **Body:**
   ```json
@@ -252,7 +266,8 @@ The system includes a robust set of **RESTful APIs** to enable smooth interactio
 ---
 
 #### **Create Trainer**
-- **Route:** `http://localhost:3000/api/v1/user/create-trainer`
+
+- **Route:** `https://gym-self-ten.vercel.app/api/v1/user/create-trainer`
 - **Method:** `POST`
 - **Headers:** `Authorization Admin Token`
 - **Body:**
@@ -288,7 +303,8 @@ The system includes a robust set of **RESTful APIs** to enable smooth interactio
 ---
 
 #### **Retrieve Trainer**
-- **Route:** `http://localhost:3000/api/v1/user/trainers`
+
+- **Route:** `https://gym-self-ten.vercel.app/api/v1/user/trainers`
 - **Method:** `GET`
 - **Response:**
   ```json
@@ -322,12 +338,13 @@ The system includes a robust set of **RESTful APIs** to enable smooth interactio
 ---
 
 #### **Retrieve Trainee**
-- **Route:** `http://localhost:3000/api/v1/user/trainees?limit=3&page=1`
+
+- **Route:** `https://gym-self-ten.vercel.app/api/v1/user/trainees?limit=3&page=1`
 - **Method:** `GET`
 - **Headers:** `Authorization Admin Token`
 - **Response:**
   ```json
-    {
+  {
     "success": true,
     "statusCode": 200,
     "message": "Fetch Trainee Data",
@@ -373,8 +390,10 @@ The system includes a robust set of **RESTful APIs** to enable smooth interactio
 ---
 
 ### **3️⃣ Class Schedule Management**
+
 #### **Create Class Schedule**
-- **Route:** `http://localhost:3000/api/v1/schedule`
+
+- **Route:** `https://gym-self-ten.vercel.app/api/v1/schedule`
 - **Method:** `POST`
 - **Headers:** `Authorization Admin Token`
 - **Body:**
@@ -405,9 +424,10 @@ The system includes a robust set of **RESTful APIs** to enable smooth interactio
 ---
 
 #### **Get Class Schedule**
-- **Route:** `http://localhost:3000/api/v1/schedule`
+
+- **Route:** `https://gym-self-ten.vercel.app/api/v1/schedule`
 - **Method:** `GET`
-- **Query Parameters:**  
+- **Query Parameters:**
   - `date=2025-03-21T00:00:00.000Z`
   - `limit=2&page=2`
 - **Response:**
@@ -445,8 +465,9 @@ The system includes a robust set of **RESTful APIs** to enable smooth interactio
   ```
 
 #### **Assign Trainer**
-- **Route:** `http://localhost:3000/api/v1/schedule/assign-trainer/:classId`
-- **Example:** `http://localhost:3000/api/v1/schedule/assign-trainer/c38d1914-9f5d-421b-b777`
+
+- **Route:** `https://gym-self-ten.vercel.app/api/v1/schedule/assign-trainer/:classId`
+- **Example:** `https://gym-self-ten.vercel.app/api/v1/schedule/assign-trainer/c38d1914-9f5d-421b-b777`
 - **Method:** `PUT`
 - **Headers:** `Authorization Admin Token`
 - **Body:**
@@ -476,8 +497,9 @@ The system includes a robust set of **RESTful APIs** to enable smooth interactio
 ---
 
 #### **Update Class Schedule**
-- **Route:** `http://localhost:3000/api/v1/schedule/:classId`
-- **Example:** `http://localhost:3000/api/v1/schedule/0e405eac-a0b9-4537-869a-de0b7ce1c048`
+
+- **Route:** `https://gym-self-ten.vercel.app/api/v1/schedule/:classId`
+- **Example:** `https://gym-self-ten.vercel.app/api/v1/schedule/0e405eac-a0b9-4537-869a-de0b7ce1c048`
 - **Method:** `PUT`
 - **Headers:** `Authorization Admin Token`
 - **Body:**
@@ -507,8 +529,9 @@ The system includes a robust set of **RESTful APIs** to enable smooth interactio
 ---
 
 #### **Delete Class Schedule**
-- **Route:** `http://localhost:3000/api/v1/schedule/:classId`
-- **Example:** `http://localhost:3000/api/v1/schedule/53a8dbd4-c0f4-4709-abb6-be8260bf013a`
+
+- **Route:** `https://gym-self-ten.vercel.app/api/v1/schedule/:classId`
+- **Example:** `https://gym-self-ten.vercel.app/api/v1/schedule/53a8dbd4-c0f4-4709-abb6-be8260bf013a`
 - **Method:** `DELETE`
 - **Headers:** `Authorization Admin Token`
 - **Response:**
@@ -532,8 +555,10 @@ The system includes a robust set of **RESTful APIs** to enable smooth interactio
 ---
 
 ### **4️⃣ Booking System**
+
 #### **Book a Class**
-- **Route:** `http://localhost:3000/api/v1/booking/`
+
+- **Route:** `https://gym-self-ten.vercel.app/api/v1/booking/`
 - **Method:** `POST`
 - **Headers:** `Authorization Trainee Token`
 - **Body:**
@@ -561,8 +586,9 @@ The system includes a robust set of **RESTful APIs** to enable smooth interactio
 ---
 
 #### **Remove Booking Class**
-- **Route:** `http://localhost:3000/api/v1/booking/:bookingId`
-- **Example:** `http://localhost:3000/api/v1/booking/8106c0a0-c55e-4b6a-b643-cb425bc49370`
+
+- **Route:** `https://gym-self-ten.vercel.app/api/v1/booking/:bookingId`
+- **Example:** `https://gym-self-ten.vercel.app/api/v1/booking/8106c0a0-c55e-4b6a-b643-cb425bc49370`
 - **Method:** `DELETE`
 - **Headers:** `Authorization Trainee Token`
 - **Response:**
@@ -580,9 +606,11 @@ The system includes a robust set of **RESTful APIs** to enable smooth interactio
 ---
 
 ### **5️⃣ Trainer Management**
+
 #### **Remove Trainer**
-- **Route:** `http://localhost:3000/api/v1/user/remove-trainer/:trainerId`
-- **Example:** `http://localhost:3000/api/v1/user/remove-trainer/2ab1b876-0e38-463f-9818-c4ad3a5b065c`
+
+- **Route:** `https://gym-self-ten.vercel.app/api/v1/user/remove-trainer/:trainerId`
+- **Example:** `https://gym-self-ten.vercel.app/api/v1/user/remove-trainer/2ab1b876-0e38-463f-9818-c4ad3a5b065c`
 - **Method:** `DELETE`
 - **Headers:** `Authorization Admin Token`
 - **Response:**
@@ -606,8 +634,10 @@ The system includes a robust set of **RESTful APIs** to enable smooth interactio
 ---
 
 ### **6️⃣ Profile Management**
+
 #### **Get My Profile**
-- **Route:** `http://localhost:3000/api/v1/user/me`
+
+- **Route:** `https://gym-self-ten.vercel.app/api/v1/user/me`
 - **Method:** `GET`
 - **Headers:** `Authorization Token`
 - **Response:**
@@ -632,7 +662,8 @@ The system includes a robust set of **RESTful APIs** to enable smooth interactio
 ---
 
 #### **Update My Profile**
-- **Route:** `http://localhost:3000/api/v1/user/update-my-profile`
+
+- **Route:** `https://gym-self-ten.vercel.app/api/v1/user/update-my-profile`
 - **Method:** `PUT`
 - **Headers:** `Authorization Token`
 - **Body:**
@@ -657,14 +688,17 @@ The system includes a robust set of **RESTful APIs** to enable smooth interactio
       "gender": "MALE"
     }
   }
+  ```
 
 ### **7️⃣ Trainer Schedule Management**
+
 #### **Get Schedule of a Trainer**
-- **Route:** `http://localhost:3000/api/v1/schedule/:trainerId`
+
+- **Route:** `https://gym-self-ten.vercel.app/api/v1/schedule/:trainerId`
 - **Method:** `GET`
 - **Example:**  
-  `GET http://localhost:3000/api/v1/schedule/f4379d6a-4bd5-4454-9cad-62a77d134d07`
-- **Headers:**  
+  `GET https://gym-self-ten.vercel.app/api/v1/schedule/f4379d6a-4bd5-4454-9cad-62a77d134d07`
+- **Headers:**
   - `Authorization Trainer Token`
 - **Response:**
   ```json
