@@ -15,7 +15,7 @@ The project is built using the following technologies:
 - **Backend:** Node.js, Express.js, Prisma ORM, PostgreSQL
 - **Database:** PostgreSQL (Relational Database)
 - **Authentication:** JWT (JSON Web Tokens)
-- **Deployment:** Railway
+- **Deployment:** Railway, Vercel
 
 ---
 
@@ -25,6 +25,13 @@ To log in as an **Admin**, use the following credentials:
 
 - **Email:** `ashik@gmail.com`
 - **Password:** `123456`
+
+---
+
+## 🚀 **Live Project Links**
+Your project is live! 🎉 Access it here:
+
+- **Backend API:** [Live Backend API URL](https://gym-self-ten.vercel.app)
 
 ---
 
