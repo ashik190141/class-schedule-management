@@ -1,7 +1,9 @@
 import { Request, Response } from "express";
 import { catchAsync } from "../../../helper/catchAsync";
+import { pick } from "../../../helper/pick";
 import { sendResponse } from "../../../helper/sendResponse";
 import { userServices } from "./user.service";
+import httpStatus from 'http-status';
 
 
 const createAdmin = catchAsync(async (req: Request, res: Response) => {
@@ -69,11 +71,38 @@ const updateMyProfile = catchAsync(async (req: Request & {user?:any}, res: Respo
   }
 });
 
+const getAllTrainers = catchAsync(async (req: Request, res: Response) => {
+  const result = await userServices.getAllTrainers();
+  if (result) {
+    sendResponse(res, {
+      statusCode: result.statusCode,
+      success: result.success,
+      message: result.message,
+      data: result.data,
+    });
+  }
+});
+
+const getAllTrainees = catchAsync(async (req: Request, res: Response) => {
+  const options = pick(req.query, ["page", "limit"]);
+  const result = await userServices.getAllTrainees(options);
+  if (result) {
+    sendResponse(res, {
+      statusCode: httpStatus.OK,
+      success: true,
+      message: 'Fetch Trainee Data',
+      data: result,
+    });
+  }
+});
+
 export const userController = {
   createAdmin,
   createTrainee,
   createTrainer,
   removeTrainer,
   getMyProfile,
-  updateMyProfile
+  updateMyProfile,
+  getAllTrainers,
+  getAllTrainees,
 };

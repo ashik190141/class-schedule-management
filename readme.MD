@@ -183,7 +183,7 @@ The system includes a robust set of **RESTful APIs** to enable smooth interactio
 #### **Create Admin**
 - **Route:** `http://localhost:3000/api/v1/user/create-admin`
 - **Method:** `POST`
-- **Headers:** `Authorization Token`
+- **Headers:** `Authorization Admin Token`
 - **Body:**
   ```json
   {
@@ -254,7 +254,7 @@ The system includes a robust set of **RESTful APIs** to enable smooth interactio
 #### **Create Trainer**
 - **Route:** `http://localhost:3000/api/v1/user/create-trainer`
 - **Method:** `POST`
-- **Headers:** `Authorization Token`
+- **Headers:** `Authorization Admin Token`
 - **Body:**
   ```json
   {
@@ -287,11 +287,96 @@ The system includes a robust set of **RESTful APIs** to enable smooth interactio
 
 ---
 
+#### **Retrieve Trainer**
+- **Route:** `http://localhost:3000/api/v1/user/trainers`
+- **Method:** `GET`
+- **Response:**
+  ```json
+  {
+    "success": true,
+    "statusCode": 200,
+    "message": "Trainer Data Fetched",
+    "data": [
+      {
+        "id": "545a4f21-38c0-4543-ace5-177679000cbc",
+        "name": "sabbir",
+        "email": "sabbir@gmail.com",
+        "contactNumber": "01323174132",
+        "gender": "MALE",
+        "createdAt": "2025-03-14T09:54:10.401Z",
+        "updatedAt": "2025-03-14T09:54:10.401Z"
+      },
+      {
+        "id": "36914eba-6cb7-4c3c-8a2d-39b0accff3dc",
+        "name": "sagor",
+        "email": "sagor@gmail.com",
+        "contactNumber": "01323174132",
+        "gender": "MALE",
+        "createdAt": "2025-03-14T09:54:23.559Z",
+        "updatedAt": "2025-03-14T09:54:23.559Z"
+      }
+    ]
+  }
+  ```
+
+---
+
+#### **Retrieve Trainee**
+- **Route:** `http://localhost:3000/api/v1/user/trainees?limit=3&page=1`
+- **Method:** `GET`
+- **Headers:** `Authorization Admin Token`
+- **Response:**
+  ```json
+    {
+    "success": true,
+    "statusCode": 200,
+    "message": "Fetch Trainee Data",
+    "data": {
+      "meta": {
+        "page": 1,
+        "limit": 3,
+        "total": 3
+      },
+      "data": [
+        {
+          "id": "7515eed7-9b85-4e58-b2a6-4c5bda68ab02",
+          "name": "joy",
+          "email": "joy@gmail.com",
+          "contactNumber": "01323174132",
+          "gender": "MALE",
+          "createdAt": "2025-03-14T09:54:50.152Z",
+          "updatedAt": "2025-03-14T09:54:50.152Z"
+        },
+        {
+          "id": "73a04b2a-ca2f-436d-8e20-d2ba5c0aa70d",
+          "name": "sadia",
+          "email": "sadia@gmail.com",
+          "contactNumber": "01323174132",
+          "gender": "FEMALE",
+          "createdAt": "2025-03-14T09:55:10.403Z",
+          "updatedAt": "2025-03-14T09:55:10.403Z"
+        },
+        {
+          "id": "6ba22bf6-6ad2-4a8d-9050-b732aa975db1",
+          "name": "samia",
+          "email": "samia@gmail.com",
+          "contactNumber": "01323174132",
+          "gender": "FEMALE",
+          "createdAt": "2025-03-14T09:55:26.381Z",
+          "updatedAt": "2025-03-14T09:55:26.381Z"
+        }
+      ]
+    }
+  }
+  ```
+
+---
+
 ### **3️⃣ Class Schedule Management**
 #### **Create Class Schedule**
 - **Route:** `http://localhost:3000/api/v1/schedule`
 - **Method:** `POST`
-- **Headers:** `Authorization Token`
+- **Headers:** `Authorization Admin Token`
 - **Body:**
   ```json
   {
@@ -363,7 +448,7 @@ The system includes a robust set of **RESTful APIs** to enable smooth interactio
 - **Route:** `http://localhost:3000/api/v1/schedule/assign-trainer/:classId`
 - **Example:** `http://localhost:3000/api/v1/schedule/assign-trainer/c38d1914-9f5d-421b-b777`
 - **Method:** `PUT`
-- **Headers:** `Authorization Token`
+- **Headers:** `Authorization Admin Token`
 - **Body:**
   ```json
   {
@@ -394,7 +479,7 @@ The system includes a robust set of **RESTful APIs** to enable smooth interactio
 - **Route:** `http://localhost:3000/api/v1/schedule/:classId`
 - **Example:** `http://localhost:3000/api/v1/schedule/0e405eac-a0b9-4537-869a-de0b7ce1c048`
 - **Method:** `PUT`
-- **Headers:** `Authorization Token`
+- **Headers:** `Authorization Admin Token`
 - **Body:**
   ```json
   {
@@ -425,7 +510,7 @@ The system includes a robust set of **RESTful APIs** to enable smooth interactio
 - **Route:** `http://localhost:3000/api/v1/schedule/:classId`
 - **Example:** `http://localhost:3000/api/v1/schedule/53a8dbd4-c0f4-4709-abb6-be8260bf013a`
 - **Method:** `DELETE`
-- **Headers:** `Authorization Token`
+- **Headers:** `Authorization Admin Token`
 - **Response:**
   ```json
   {
@@ -450,7 +535,7 @@ The system includes a robust set of **RESTful APIs** to enable smooth interactio
 #### **Book a Class**
 - **Route:** `http://localhost:3000/api/v1/booking/`
 - **Method:** `POST`
-- **Headers:** `Authorization Token`
+- **Headers:** `Authorization Trainee Token`
 - **Body:**
   ```json
   {
@@ -479,7 +564,7 @@ The system includes a robust set of **RESTful APIs** to enable smooth interactio
 - **Route:** `http://localhost:3000/api/v1/booking/:bookingId`
 - **Example:** `http://localhost:3000/api/v1/booking/8106c0a0-c55e-4b6a-b643-cb425bc49370`
 - **Method:** `DELETE`
-- **Headers:** `Authorization Token`
+- **Headers:** `Authorization Trainee Token`
 - **Response:**
   ```json
   {
@@ -499,7 +584,7 @@ The system includes a robust set of **RESTful APIs** to enable smooth interactio
 - **Route:** `http://localhost:3000/api/v1/user/remove-trainer/:trainerId`
 - **Example:** `http://localhost:3000/api/v1/user/remove-trainer/2ab1b876-0e38-463f-9818-c4ad3a5b065c`
 - **Method:** `DELETE`
-- **Headers:** `Authorization Token`
+- **Headers:** `Authorization Admin Token`
 - **Response:**
   ```json
   {
@@ -580,7 +665,7 @@ The system includes a robust set of **RESTful APIs** to enable smooth interactio
 - **Example:**  
   `GET http://localhost:3000/api/v1/schedule/f4379d6a-4bd5-4454-9cad-62a77d134d07`
 - **Headers:**  
-  - `Authorization Token`
+  - `Authorization Trainer Token`
 - **Response:**
   ```json
   {

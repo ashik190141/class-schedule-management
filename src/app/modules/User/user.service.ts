@@ -3,6 +3,7 @@ import { Request } from "express";
 import { prisma } from "../../../helper/prisma";
 import bcrypt from "bcrypt";
 import httpStatus from "http-status";
+import { calculatePagination } from "../../../helper/calculatePagination";
 
 const createAdmin = async (req: Request) => {
   const data = req.body;
@@ -284,11 +285,46 @@ const getMyProfile = async (user: any) => {
   };
 };
 
+const getAllTrainers = async () => {
+  const result = await prisma.trainer.findMany();
+  return {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: `Trainer Data Fetched`,
+    data: result,
+  };
+} 
+
+const getAllTrainees = async (options:any) => {
+  const { page, limit, skip } = calculatePagination(options);
+  const result = await prisma.trainee.findMany({
+    skip,
+    take: limit,
+    orderBy: {
+      createdAt:"asc"
+    }
+  });
+  const total = await prisma.trainee.count({
+    skip,
+    take: limit,
+  });
+  return {
+    meta: {
+      page,
+      limit,
+      total,
+    },
+    data: result,
+  };
+}; 
+
 export const userServices = {
   createAdmin,
   createTrainee,
   createTrainer,
   removeTrainer,
   updateMyProfile,
-  getMyProfile
+  getMyProfile,
+  getAllTrainers,
+  getAllTrainees,
 };

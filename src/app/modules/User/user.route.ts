@@ -19,4 +19,8 @@ router.get("/me", auth(Role.ADMIN, Role.TRAINEE, Role.TRAINER), userController.g
 
 router.put("/update-my-profile", auth(Role.ADMIN, Role.TRAINEE, Role.TRAINER), validateRequest(userValidation.updateProfileSchema), userController.updateMyProfile);
 
+router.get("/trainers", userController.getAllTrainers);
+
+router.get("/trainees", auth(Role.ADMIN), userController.getAllTrainees);
+
 export const userRoutes = router;
