@@ -1,0 +1,102 @@
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  ADMIN
+  TRAINER
+  TRAINEE
+}
+
+enum Gender{
+  MALE
+  FEMALE
+}
+
+model User{
+  id String @id @default(uuid())
+  email String @unique
+  password String
+  role Role
+  trainer Trainer?
+  trainee Trainee?
+  admin Admin?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("users")
+}
+
+model Trainer{
+  id String @id @default(uuid())
+  name String
+  email String @unique
+  contactNumber String
+  gender Gender
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  user User @relation(fields: [email], references: [email])
+  classSchedule ClassSchedule[]
+
+  @@map("trainers")
+}
+
+model Trainee{
+  id String @id @default(uuid())
+  name String
+  email String @unique
+  contactNumber String
+  gender Gender
+  user User @relation(fields: [email], references: [email])
+  booking Booking[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("trainees")
+}
+
+model Admin{
+  id String @id @default(uuid())
+  name String
+  email String @unique
+  contactNumber String
+  gender Gender
+  user User @relation(fields: [email], references: [email])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("admins")
+}
+
+model ClassSchedule{
+  id String @id @default(uuid())
+  date DateTime
+  startTime String
+  endTime String
+  trainerEmail String?
+  bookingNumber Int @default(0)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  trainer Trainer? @relation(fields: [trainerEmail], references: [email])
+  booking Booking[]
+
+  @@map("classSchedules")
+}
+
+model Booking{
+  id String @id @default(uuid())
+  classId String
+  traineeEmail String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  classSchedule ClassSchedule @relation(fields: [classId], references: [id])
+  trainee Trainee @relation(fields: [traineeEmail], references: [email])
+
+  @@map("bookings")
+}
