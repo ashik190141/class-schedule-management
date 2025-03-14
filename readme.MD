@@ -30,8 +30,8 @@ To log in as an **Admin**, use the following credentials:
 
 ### **1️⃣ Clone the Repository**
 ```bash
-git clone https://github.com/your-repo-url.git
-cd your-project-folder
+git clone https://github.com/ashik190141/class-schedule-management
+cd class-schedule-management
 ```
 
 ### **2️⃣ Install Dependencies**

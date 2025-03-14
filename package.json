@@ -1,11 +1,14 @@
 {
   "name": "gym-class-schedule",
   "version": "1.0.0",
-  "main": "index.js",
   "author": "ashik",
   "license": "MIT",
   "scripts": {
-    "dev": "ts-node-dev --respawn --transpile-only src/server.ts"
+    "dev": "ts-node-dev --respawn --transpile-only src/server.ts",
+    "prod": "NODE_ENV=production node ./dist/server.js",
+    "build": "tsc",
+    "start": "node dist/server.js",
+    "postinstall": "prisma generate"
   },
   "devDependencies": {
     "@types/cors": "^2.8.17",
@@ -25,6 +28,7 @@
     "express": "^4.21.2",
     "http-status": "^2.1.0",
     "jsonwebtoken": "^9.0.2",
+    "prisma": "^6.5.0",
     "zod": "^3.24.2"
   }
 }
